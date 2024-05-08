@@ -6,4 +6,3 @@ This is to demontrate the build up of a fullstack note app from scratch with rea
 
 The main focus is placed on functionality and a little bit on styling.
 
-
