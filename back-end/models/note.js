@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
 
 const url = process.env.MONGODB_URI
-// const url = `mongodb+srv://fullstack:${password}@cluster0.sg4cdiq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
 
 console.log('connecting to', url)
 

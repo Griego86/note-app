@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const cors =require('cors')
@@ -16,28 +17,6 @@ const requestLogger = (request, response, next) => {
 }
 
 app.use(requestLogger)
-
-const password = process.argv[2]
-
-const url = `mongodb+srv://fullstack:${password}@cluster0.sg4cdiq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
-
-mongoose.set('strictQuery', false)
-mongoose.connect(url)
-
-const noteSchema = new mongoose.Schema({
-  content: String,
-  important: Boolean
-})
-
-noteSchema.set('toJSON', {
-  transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString()
-    delete returnedObject._id
-    delete returnedObject.__v
-  }
-})
-
-const Note = mongoose.model('Note', noteSchema)
 
 let notes = [
   {
@@ -118,7 +97,7 @@ const unknownEndpoint = (request, response) => {
 
 app.use(unknownEndpoint)
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`)
 })
