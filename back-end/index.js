@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const cors =require('cors')
+const mongoose = require('mongoose')
 
 app.use(cors())
 app.use(express.json())
@@ -15,6 +16,20 @@ const requestLogger = (request, response, next) => {
 }
 
 app.use(requestLogger)
+
+const password = process.argv[2]
+
+const url = `mongodb+srv://fullstack:${password}@cluster0.sg4cdiq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+
+mongoose.set('strictQuery', false)
+mongoose.connect(url)
+
+const noteSchema = new mongoose.Schema({
+  content: String,
+  important: Boolean
+})
+
+const Note = mongoose.model('Note', noteSchema)
 
 let notes = [
   {
