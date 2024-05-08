@@ -24,6 +24,11 @@
       "id": "a520",
       "content": "another new note",
       "important": true
+    },
+    {
+      "id": "b25d",
+      "content": "adding another note",
+      "important": false
     }
   ]
 }
